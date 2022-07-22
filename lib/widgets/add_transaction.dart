@@ -13,10 +13,7 @@ class AddTransactionState extends State<AddTransaction> {
   static String addTransButton = 'Add transaction';
 
   static String amountLabel = 'Transaction amount';
-  final TextEditingController amountController = TextEditingController();
-
   static String descriptionLabel = 'Transaction description';
-  final TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

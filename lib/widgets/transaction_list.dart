@@ -20,13 +20,30 @@ class _TransactionListState extends State<TransactionList> {
         date: DateTime.now()),
   ];
 
+  void _addNewTransaction(String title, double amount) {
+    _transactions.add(Transaction(
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Expanded(
+      child: ListView.builder(
+        itemCount: _transactions.length,
+        itemBuilder: (context, index) => TransactionCard(
+            _transactions[index].title,
+            _transactions[index].amount,
+            _transactions[index].date),
+      ),
+    );
+    /* return Column(
       children: _transactions
           .map(
               (trans) => TransactionCard(trans.title, trans.amount, trans.date))
           .toList(),
-    );
+    ); */
   }
 }
