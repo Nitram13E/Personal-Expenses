@@ -21,10 +21,25 @@ class AddTransactionState extends State<AddTransaction> {
   final TextEditingController titleController = TextEditingController();
 
   void addNewTransaction() {
+    if (titleController.text.isEmpty | amountController.text.isEmpty) return;
+
+    final String title = titleController.text;
+    final double amount;
+
+    try {
+      amount = double.parse(amountController.text);
+    } on FormatException catch (e) {
+      print(e);
+      return;
+    }
+
+    if (amount.isNegative) return;
+
     widget.addTransaction(
-      title: titleController.text,
-      amount: double.parse(amountController.text),
+      title: title,
+      amount: amount,
     );
+
     amountController.clear();
     titleController.clear();
   }

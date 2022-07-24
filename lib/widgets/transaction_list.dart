@@ -15,14 +15,13 @@ class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView.builder(
-        itemCount: widget.transactions.length,
-        itemBuilder: (context, index) => TransactionCard(
-            widget.transactions[index].title,
-            widget.transactions[index].amount,
-            widget.transactions[index].date),
-      ),
-    );
+        child: ListView.builder(
+      itemCount: widget.transactions.length,
+      itemBuilder: (context, index) => TransactionCard(
+          widget.transactions[index].title,
+          widget.transactions[index].amount,
+          widget.transactions[index].date),
+    ));
     /* return Column(
       children: _transactions
           .map(

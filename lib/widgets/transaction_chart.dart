@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:personal_expenses/models/transaction.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class TransactionChart extends StatefulWidget {
-  const TransactionChart({Key? key}) : super(key: key);
+  final List<Transaction> transactions;
+  const TransactionChart({Key? key, required this.transactions})
+      : super(key: key);
 
   @override
   State<TransactionChart> createState() => _TransactionChartState();
