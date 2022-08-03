@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TransactionCard extends StatelessWidget {
   final String title;
   final double amount;
   final DateTime date;
 
-  const TransactionCard(this.title, this.amount, this.date, {Key? key})
-      : super(key: key);
+  const TransactionCard(this.title, this.amount, this.date, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +36,14 @@ class TransactionCard extends StatelessWidget {
                 Text(
                   overflow: TextOverflow.clip,
                   title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
-                  date.toString().substring(0, 16),
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.grey),
+                  //date.toString().substring(0, 16),
+                  DateFormat.yMMMEd().format(date),
+                  style: const TextStyle(color: Colors.grey),
                 ),
               ],
             ),

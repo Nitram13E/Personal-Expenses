@@ -5,8 +5,7 @@ import 'package:personal_expenses/widgets/input_card.dart';
 class AddTransaction extends StatefulWidget {
   final Function addTransaction;
 
-  const AddTransaction({Key? key, required this.addTransaction})
-      : super(key: key);
+  const AddTransaction({Key? key, required this.addTransaction}) : super(key: key);
 
   @override
   State<AddTransaction> createState() => AddTransactionState();
@@ -29,7 +28,6 @@ class AddTransactionState extends State<AddTransaction> {
     try {
       amount = double.parse(amountController.text);
     } on FormatException catch (e) {
-      print(e);
       return;
     }
 
