@@ -5,11 +5,10 @@ import 'package:personal_expenses/widgets/transaction_charts.dart';
 import 'package:personal_expenses/widgets/transaction_list.dart';
 
 class DashboardPage extends StatefulWidget {
-  final Function addNewTransaction;
+  final Function deleteTransaction;
+
   final List<Transaction> transactions;
-  const DashboardPage(
-      {Key? key, required this.addNewTransaction, required this.transactions})
-      : super(key: key);
+  const DashboardPage({Key? key, required this.deleteTransaction, required this.transactions}) : super(key: key);
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -24,7 +23,7 @@ class _DashboardPageState extends State<DashboardPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TransactionCharts(transactions: widget.transactions),
-        TransactionList(transactions: widget.transactions)
+        TransactionList(transactions: widget.transactions, deleteTransaction: widget.deleteTransaction)
       ],
     );
   }

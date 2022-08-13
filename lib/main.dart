@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
 import 'package:personal_expenses/widgets/add_transaction.dart';
+import 'package:uuid/uuid.dart';
 
 import 'pages/dashboard_page.dart';
 
@@ -50,14 +51,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = <Transaction>[];
 
-  void _addNewTransaction({required String title, required double amount}) {
+  void _addNewTransaction({required String title, required double amount, required DateTime date}) {
     setState(() {
       _transactions.add(Transaction(
         title: title,
         amount: amount,
-        date: DateTime.now(),
+        date: date,
       ));
     });
+  }
+
+  void _deleteTransaction(Uuid transactionId) {
+    _transactions.removeWhere((transaction) => transaction.id == transactionId);
   }
 
   void showAddTransactionPanel(BuildContext context) {
@@ -75,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.appName),
       ),
       body: DashboardPage(
-        addNewTransaction: _addNewTransaction,
+        deleteTransaction: _deleteTransaction,
         transactions: _transactions,
       ),
       floatingActionButton: FloatingActionButton(

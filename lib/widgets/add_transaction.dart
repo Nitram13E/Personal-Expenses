@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_expenses/widgets/date_picker.dart';
 
 import 'package:personal_expenses/widgets/input_card.dart';
 
@@ -16,17 +17,22 @@ class AddTransactionState extends State<AddTransaction> {
   static String amountLabel = 'Transaction amount';
   static String titleLabel = 'Transaction description';
 
-  final TextEditingController amountController = TextEditingController();
-  final TextEditingController titleController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  DateTime? transactionDate;
 
-  void addNewTransaction() {
-    if (titleController.text.isEmpty | amountController.text.isEmpty) return;
+  void setDate(DateTime date) {
+    transactionDate = date;
+  }
 
-    final String title = titleController.text;
+  void _addNewTransaction() {
+    if (_titleController.text.isEmpty || _amountController.text.isEmpty || (transactionDate == null)) return;
+
+    final String title = _titleController.text;
     final double amount;
 
     try {
-      amount = double.parse(amountController.text);
+      amount = double.parse(_amountController.text);
     } on FormatException catch (e) {
       return;
     }
@@ -36,10 +42,11 @@ class AddTransactionState extends State<AddTransaction> {
     widget.addTransaction(
       title: title,
       amount: amount,
+      date: transactionDate as DateTime,
     );
 
-    amountController.clear();
-    titleController.clear();
+    _amountController.clear();
+    _titleController.clear();
   }
 
   @override
@@ -49,18 +56,19 @@ class AddTransactionState extends State<AddTransaction> {
       children: [
         InputCard(
           label: titleLabel,
-          controller: titleController,
+          controller: _titleController,
           textType: TextInputType.number,
         ),
         InputCard(
           label: amountLabel,
-          controller: amountController,
+          controller: _amountController,
           textType: TextInputType.text,
         ),
+        DatePicker(setDate: setDate),
         Container(
           margin: const EdgeInsets.all(5),
           child: ElevatedButton(
-            onPressed: addNewTransaction,
+            onPressed: _addNewTransaction,
             child: Text(addTransButton),
           ),
         ),
