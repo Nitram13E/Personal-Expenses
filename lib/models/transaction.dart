@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:uuid/uuid.dart';
 
 class Transaction {
   final UniqueKey id = UniqueKey();

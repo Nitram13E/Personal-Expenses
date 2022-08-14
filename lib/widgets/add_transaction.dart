@@ -33,7 +33,7 @@ class AddTransactionState extends State<AddTransaction> {
 
     try {
       amount = double.parse(_amountController.text);
-    } on FormatException catch (e) {
+    } on FormatException catch (_) {
       return;
     }
 
@@ -57,12 +57,12 @@ class AddTransactionState extends State<AddTransaction> {
         InputCard(
           label: titleLabel,
           controller: _titleController,
-          textType: TextInputType.number,
+          textType: TextInputType.text,
         ),
         InputCard(
           label: amountLabel,
           controller: _amountController,
-          textType: TextInputType.text,
+          textType: TextInputType.number,
         ),
         DatePicker(setDate: setDate),
         Container(

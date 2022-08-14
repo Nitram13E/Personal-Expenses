@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
 import 'package:personal_expenses/widgets/add_transaction.dart';
-import 'package:uuid/uuid.dart';
 
 import 'pages/dashboard_page.dart';
 
@@ -77,18 +76,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text(widget.appName),
+    );
+
+    final dashboardPage = DashboardPage(
+      deleteTransaction: _deleteTransaction,
+      transactions: _transactions,
+    );
+
+    final addNewTransaction = FloatingActionButton(
+      onPressed: () => showAddTransactionPanel(context),
+      child: const Icon(Icons.add),
+    );
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.appName),
-      ),
-      body: DashboardPage(
-        deleteTransaction: _deleteTransaction,
-        transactions: _transactions,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => showAddTransactionPanel(context),
-        child: const Icon(Icons.add),
-      ),
+      appBar: appBar,
+      body: dashboardPage,
+      floatingActionButton: addNewTransaction,
     );
   }
 }
