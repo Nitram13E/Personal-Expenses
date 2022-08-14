@@ -61,8 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _deleteTransaction(Uuid transactionId) {
-    _transactions.removeWhere((transaction) => transaction.id == transactionId);
+  void _deleteTransaction(UniqueKey transactionId) {
+    setState(() {
+      _transactions.removeWhere((transaction) => transaction.id == transactionId);
+    });
   }
 
   void showAddTransactionPanel(BuildContext context) {

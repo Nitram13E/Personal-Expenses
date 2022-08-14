@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:uuid/uuid.dart';
 
 class Transaction {
-  final Uuid id = const Uuid();
+  final UniqueKey id = UniqueKey();
   final String title;
   final double amount;
   final DateTime date;

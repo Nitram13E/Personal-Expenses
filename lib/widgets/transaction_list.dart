@@ -20,10 +20,7 @@ class _TransactionListState extends State<TransactionList> {
       child: ListView.builder(
         itemCount: widget.transactions.length,
         itemBuilder: (context, index) => TransactionCard(
-          id: widget.transactions[index].id,
-          title: widget.transactions[index].title,
-          amount: widget.transactions[index].amount,
-          date: widget.transactions[index].date,
+          transaction: widget.transactions[index],
           deleteTransaction: widget.deleteTransaction,
         ),
       ),

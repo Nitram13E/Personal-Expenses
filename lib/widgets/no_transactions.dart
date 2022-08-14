@@ -5,25 +5,21 @@ class NoTransactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              scale: 2,
-              'assets/images/no-transaction.png',
-              fit: BoxFit.scaleDown,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text('No transactions registered.',
-                textAlign: TextAlign.center,
-                style:
-                    TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
-          ],
-        ),
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            scale: 2,
+            'assets/images/no-transaction.png',
+            fit: BoxFit.scaleDown,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text('No transactions registered.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+        ],
       ),
     );
   }
